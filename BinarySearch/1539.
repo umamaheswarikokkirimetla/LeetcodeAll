@@ -1,0 +1,11 @@
+class Solution:
+    def findKthPositive(self, nums: List[int], k: int) -> int:
+        n=len(nums)
+        for i in range(n):
+            if nums[i]<=k:
+                k+=1
+            else:
+                break
+        return k
+    
+        
