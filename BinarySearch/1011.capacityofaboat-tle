@@ -1,0 +1,23 @@
+class Solution:
+    def shipWithinDays(self, nums: List[int], days: int) -> int:
+        def func(nums,c):
+            n=len(nums)
+            load=0
+            d=1
+            for i in range(n):
+                if load+nums[i]>c:
+                    d=d+1
+                    load=nums[i]
+                else:
+                    load+=nums[i]
+            return d
+
+
+        n=len(nums)
+        for c in range(max(nums),sum(nums)+1):
+            dr=func(nums,c)
+            if dr<=days:
+                return c
+        return -1
+
+        
