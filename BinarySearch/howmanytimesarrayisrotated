@@ -1,0 +1,43 @@
+#User function Template for python3
+class Solution:
+    def findKRotation(self, arr):
+        # code here
+        n=len(arr)
+        ind=-1
+        low,high=0,n-1
+        ans=float('inf')
+        while low<=high:
+            mid=(low+high)//2
+            if arr[low]<=arr[high]:
+                if arr[low]<ans:
+                    ans=arr[low]
+                    ind=low
+            
+            if arr[low]<=arr[mid]:
+                if arr[low]<ans:
+                    ind=low
+                    ans=arr[low]
+                low=mid+1
+            else:
+                if arr[mid]<ans:
+                    ind=mid
+                    ans=arr[mid]
+                high=mid-1
+        return ind
+            
+                    
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == "__main__":
+    t = int(input().strip())
+    for _ in range(t):
+        arr = list(map(int, input().strip().split()))
+        ob = Solution()
+        res = ob.findKRotation(arr)
+        print(res)
+
+# } Driver Code Ends
