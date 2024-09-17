@@ -1,0 +1,16 @@
+class Solution:
+    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        psc={0:1}
+        count=0
+        ps=0
+        for num in nums:
+            ps+=num
+            ns=ps-goal
+            if ns in psc:
+                count+=psc[ns]
+            if ps in psc:
+                psc[ps]+=1
+            else:
+                psc[ps]=1
+        return count
+        
