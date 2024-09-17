@@ -1,0 +1,18 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        n=len(height)
+        pm,sm=[0]*n,[0]*n
+        pm[0]=height[0] 
+        for i in range(1,n):
+            pm[i]=max(height[i],pm[i-1])
+        sm[n-1]=height[n-1]
+        for i in range(n-2,-1,-1):
+            sm[i]=max(height[i],sm[i+1])
+        total=0
+        for i in range(n):
+            lm=pm[i]
+            rm=sm[i]
+            if height[i]<lm and height[i]<rm:
+                total += min(lm,rm)-height[i]
+        return total
+        
