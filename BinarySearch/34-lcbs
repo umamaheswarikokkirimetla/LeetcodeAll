@@ -1,0 +1,36 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        n=len(nums)
+
+        def fo(nums,target):
+            low,high=0,n-1
+            f=-1
+            while low<=high:
+                mid=(low+high)//2
+                if nums[mid]==target:
+                    f=mid
+                    high=mid-1
+                elif nums[mid]<target:
+                    low=mid+1
+                else:
+                    high=mid-1
+            return f
+        def lo(nums,target):
+            low,high=0,n-1
+            l=-1
+            while low<=high:
+                mid=(low+high)//2
+                if nums[mid]==target:
+                    l=mid
+                    low=mid+1
+                elif nums[mid]<target:
+                    low=mid+1
+                else:
+                    high=mid-1
+            return l
+        first=fo(nums,target)
+        if first==-1:
+            return [-1,-1]
+        last=lo(nums,target)
+        return [first,last]
+            
