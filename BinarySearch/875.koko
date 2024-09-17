@@ -1,0 +1,27 @@
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        n=len(piles)
+        def findMax(piles):
+            maxi=-1000000
+            for i in range(n):
+                if piles[i]>maxi:
+                    maxi=piles[i]
+            return maxi
+        def func(piles,hourly):
+            th=0
+            for i in range(n):
+                th += math.ceil(piles[i] / hourly)
+            return th
+
+        low,high=1,findMax(piles)
+        ans=0
+        while low<=high:
+            mid=(low+high)//2
+            th=func(piles,mid)
+            if th<=h:
+                ans=min(ans,th)
+                high=mid-1
+            else:
+                low=mid+1
+        return low
+        
